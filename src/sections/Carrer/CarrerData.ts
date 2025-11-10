@@ -11,16 +11,16 @@ export const carrerCards = [
   },
   {
     title: "Sistemas de Informação — UNINOVE",
-    period: "Bacharelado • 2025",
+    period: "Agosto de 2023 • Julho de 2027",
     description:
       "Formação com foco em arquitetura de software, bancos de dados, segurança da informação e metodologias ágeis. Desenvolvimento de soluções completas e escaláveis com tecnologias modernas.",
     image: inteliJ,
   },
   {
-    title: "Projetos Pessoais",
+    title: "Queshua Studios",
     period: "Em andamento",
     description:
-      "Criação de aplicações multiplataforma com React, Spring Boot e Flutter. Atuação em arquitetura modular, APIs REST e integração de serviços em nuvem.",
+      "Queshua Studios é um estúdio independente focado na criação de soluções digitais, softwares e experiências interativas que unem tecnologia, design e propósito.",
     image: inteliJ,
   },
   {

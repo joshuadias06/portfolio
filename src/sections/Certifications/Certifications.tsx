@@ -11,9 +11,23 @@ import { motion, AnimatePresence } from "framer-motion";
 import { certificationsData } from "./certificationsData";
 import type { Certification } from "./certificationsData";
 
+// 🔹 Ícones das tecnologias
+import {
+  SiKotlin,
+  SiPython,
+  SiCypress,
+  SiReact,
+  SiGooglecloud,
+  SiGithub
+} from "react-icons/si";
+import { FaHandshake, FaJava } from "react-icons/fa";
+
+import type { JSX } from "@emotion/react/jsx-runtime";
+
 const MotionCard = motion(Card);
 const MotionDiv = motion.div;
 
+// 🔹 Categorias
 const categories = [
   "java",
   "kotlin",
@@ -24,6 +38,18 @@ const categories = [
   "github",
   "softskills",
 ];
+
+// 🔹 Mapeamento de ícones
+const categoryIcons: Record<string, JSX.Element> = {
+  java: <FaJava color="white" size={20} />,
+  kotlin: <SiKotlin color="white" size={20} />,
+  python: <SiPython color="white" size={20} />,
+  qa: <SiCypress color="white" size={20} />,
+  web: <SiReact color="white" size={20} />,
+  cloud: <SiGooglecloud color="white" size={20} />,
+  github: <SiGithub color="white" size={20} />,
+  softskills: <FaHandshake color="white" size={20} />,
+};
 
 export const Certifications = () => {
   const [selectedCategory, setSelectedCategory] = useState("java");
@@ -79,17 +105,43 @@ export const Certifications = () => {
               borderRadius: "24px",
               transition: "all 0.3s ease",
               fontFamily: "'Inter', sans-serif",
+              color: "white",
+              borderColor: "rgba(255,255,255,0.3)",
+              "&:hover": {
+                borderColor: "rgba(255,255,255,0.6)",
+              },
               ...(selectedCategory === category && {
                 boxShadow: "0 0 18px rgba(81,112,255,0.45)",
               }),
             }}
           >
-            {category}
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+                color: "inherit",
+              }}
+            >
+              {categoryIcons[category]}
+              <Typography
+                component="span"
+                sx={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontWeight: 600,
+                  textTransform: "capitalize",
+                  color: "inherit",
+                  fontSize: 15,
+                }}
+              >
+                {category}
+              </Typography>
+            </Box>
           </Button>
         ))}
       </Box>
 
-      {/* 🔹 Lista de Certificados (Stack em vez de Grid) */}
+      {/* 🔹 Lista de Certificados */}
       <AnimatePresence mode="wait">
         <MotionDiv
           key={selectedCategory}
@@ -103,7 +155,11 @@ export const Certifications = () => {
             flexWrap="wrap"
             justifyContent="center"
             alignItems="stretch"
-            spacing={4}
+            useFlexGap
+            sx={{
+              rowGap: 6, // espaçamento vertical
+              columnGap: 4, // espaçamento horizontal
+            }}
           >
             {filteredCerts.map((cert: Certification, index) => (
               <MotionDiv
@@ -118,8 +174,7 @@ export const Certifications = () => {
                   damping: 18,
                 }}
                 style={{
-                  flex: "1 1 calc(25% - 32px)",
-                  minWidth: 260,
+                  flex: "1 1 280px",
                   maxWidth: 320,
                   display: "flex",
                   justifyContent: "center",
@@ -129,8 +184,10 @@ export const Certifications = () => {
                   whileHover={{ scale: 1.03 }}
                   sx={{
                     width: "100%",
+                    height: "100%",
                     borderRadius: "18px",
                     overflow: "hidden",
+                    position: "relative",
                     background:
                       "linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%)",
                     backdropFilter: "blur(20px) saturate(160%)",
@@ -160,7 +217,7 @@ export const Certifications = () => {
                     },
                   }}
                 >
-                  <CardContent sx={{ p: 3, zIndex: 2 }}>
+                  <CardContent sx={{ p: 3, zIndex: 2, flexGrow: 1 }}>
                     <Typography
                       variant="h6"
                       fontWeight={700}

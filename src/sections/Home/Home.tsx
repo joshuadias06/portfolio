@@ -1,31 +1,18 @@
-import { Box, Typography, Stack, Button } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { motion } from "framer-motion";
-import perfilIcon from "../../assets/perfil_icon.png";
+import avatarJoshua from "../../assets/avatar_joshua.png";
+
+const Motion = motion as any;
 
 export const Home = () => {
   const fadeInUp = {
-    hidden: { opacity: 0, y: 40 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: "easeOut" as const },
-    },
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" as const } },
   };
 
   const fadeInImage = {
     hidden: { opacity: 0, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 1, ease: "easeOut" as const },
-    },
-  };
-
-  const staggerContainer = {
-    hidden: {},
-    visible: {
-      transition: { staggerChildren: 0.2 },
-    },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.9, ease: "easeOut" as const } },
   };
 
   return (
@@ -34,155 +21,161 @@ export const Home = () => {
       sx={{
         width: "100vw",
         minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        backgroundColor: "background.default",
         position: "relative",
         overflow: "hidden",
-        px: { xs: "6vw", md: "8vw" },
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "background.default",
+        px: { xs: "5vw", md: "8vw" },
+        py: { xs: 6, md: 8 },
       }}
     >
-      {/* IMAGEM COM ANIMAÇÃO */}
-      <motion.div
-        variants={fadeInImage}
-        initial="hidden"
-        animate="visible"
-        style={{
-          flexBasis: "50%",
-          display: "flex",
+      {/* 🔹 Texto PORTFOLIO */}
+      <Box
+        sx={{
+          position: "absolute",
+          top: "26%",
+          left: 0,
+          width: "100%",
+          display: { xs: "none", md: "flex" },
+          justifyContent: "center",
           alignItems: "center",
-          justifyContent: "flex-start",
-          position: "relative",
+          zIndex: 0,
+          overflow: "visible",
+          pointerEvents: "none",
+          px: "2vw",
         }}
       >
+        <Typography
+          component="span"
+          sx={{
+            fontFamily: "'Anton', sans-serif",
+            fontSize: "clamp(100px, 17vw, 250px)",
+            fontWeight: 900,
+            lineHeight: 0.9,
+            color: "#ffffff",
+            letterSpacing: "0.04em",
+            textTransform: "uppercase",
+            textAlign: "center",
+            whiteSpace: "nowrap",
+            maxWidth: "96vw",
+            transform: "translateX(-2%) scaleY(1.5)",
+            transformOrigin: "center",
+            textShadow: "0 0 40px rgba(255,255,255,0.12), 0 0 80px rgba(81,112,255,0.18)",
+            filter: "drop-shadow(0 0 50px rgba(81,112,255,0.25))",
+            userSelect: "none",
+          }}
+        >
+          PORTFOLIO
+        </Typography>
+      </Box>
+
+      {/* 🔹 Avatar centralizado (agora maior) */}
+      <Motion.div
+        initial="hidden"
+        animate="visible"
+        variants={fadeInImage}
+        style={{
+          position: "relative",
+          zIndex: 2,
+          marginTop: "0vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {/* Luz difusa atrás */}
         <Box
           sx={{
             position: "absolute",
-            left: { xs: "50%", md: "8vw" },
-            top: "50%",
-            transform: "translate(-50%, -50%)",
-            width: { xs: 340, md: 480 },
-            height: { xs: 340, md: 480 },
+            width: { xs: 340, md: 560 }, // ⬆️ aumentada
+            height: { xs: 340, md: 560 },
             borderRadius: "50%",
             background:
-              "radial-gradient(circle, rgba(81,112,255,0.38) 0%, rgba(81,112,255,0.03) 65%)",
-            filter: "blur(40px)",
-            zIndex: 0,
-            pointerEvents: "none",
-            opacity: 0.95,
-          }}
-        />
-        <Box
-          component="img"
-          src={perfilIcon}
-          alt="Foto de perfil"
-          sx={{
-            position: "relative",
+              "radial-gradient(circle, rgba(81,112,255,0.4) 0%, rgba(81,112,255,0.03) 60%)",
+            filter: "blur(55px)", // mais suave
             zIndex: 1,
-            width: { xs: 300, md: 520 },
-            height: { xs: 300, md: 520 },
-            borderRadius: "50%",
-            objectFit: "cover",
-            boxShadow: "0 0 90px rgba(81,112,255,0.28)",
-            ml: { xs: 0, md: "4vw" },
-            maxWidth: "calc(60vw)",
+            pointerEvents: "none",
           }}
         />
-      </motion.div>
 
-      {/* TEXTO + BOTÃO */}
-      <Stack
-        component={motion.div}
-        variants={staggerContainer}
-        initial="hidden"
-        animate="visible"
-        spacing={4}
+        {/* Avatar com máscara circular */}
+        <Motion.img
+          src={avatarJoshua}
+          alt="Avatar de Joshua Dias"
+          initial={{ opacity: 0, y: 20, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
+          style={{
+            width: "min(75vw, 600px)", // ⬆️ agora ocupa mais espaço da tela
+            height: "min(75vw, 600px)",
+            maxWidth: 600,
+            maxHeight: 600,
+            objectFit: "cover",
+            borderRadius: "50%",
+            WebkitMaskImage: "radial-gradient(circle, white 99%, transparent 100%)",
+            maskImage: "radial-gradient(circle, white 99%, transparent 100%)",
+            boxShadow: "0 25px 70px rgba(81,112,255,0.3)",
+            zIndex: 2,
+            backgroundColor: "transparent",
+          }}
+        />
+      </Motion.div>
+
+      {/* 🔹 Textos auxiliares */}
+      <Box
         sx={{
-          flexBasis: { xs: "100%", md: "48%" },
-          alignItems: { xs: "center", md: "flex-end" },
-          textAlign: { xs: "center", md: "right" },
-          justifyContent: "center",
-          pr: { xs: 0, md: "5vw" },
-          pl: { xs: 0, md: 4 },
-          py: { xs: 6, md: 0 },
-          zIndex: 2,
-          position: "relative",
+          position: "absolute",
+          bottom: { xs: 110, md: 130 },
+          left: 0,
+          right: 0,
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "flex-end",
+          px: { xs: "5vw", md: "8vw" },
+          zIndex: 3,
+          flexDirection: { xs: "column", md: "row" },
+          gap: { xs: 2, md: 0 },
         }}
       >
-        {/* TÍTULO */}
-        <motion.div variants={fadeInUp}>
-          <Typography
-            variant="h2"
-            fontWeight={800}
-            color="primary"
-            sx={{
-              lineHeight: 1.1,
-              fontSize: { xs: "2.3rem", md: "3.5rem" },
-              maxWidth: { xs: "90%", md: "52ch" },
-              letterSpacing: "-0.02em",
-              fontFamily: "'Poppins', sans-serif",
-              textShadow: "0px 0px 20px rgba(81,112,255,0.1)",
-            }}
-          >
-            Construindo soluções digitais que inspiram e geram impacto real.
-          </Typography>
-        </motion.div>
-
-        <motion.div variants={fadeInUp}>
-          <Typography
-            variant="h6"
-            color="text.secondary"
-            sx={{
-              opacity: 0.95,
-              fontSize: { xs: "1.15rem", md: "1.4rem" },
-              maxWidth: { xs: "100%", md: "50ch" },
-              fontWeight: 500,
-              lineHeight: 1.7,
-              fontFamily: "'Poppins', sans-serif",
-              textAlign: "justify",
-              textJustify: "inter-word",
-            }}
-          >
-            Unindo engenharia, produto e propósito para criar experiências digitais
-            que resolvem problemas reais e impulsionam negócios.
-          </Typography>
-        </motion.div>
-
-        {/* BOTÃO */}
-        <motion.div variants={fadeInUp}>
-          <Button
-            variant="contained"
-            color="primary"
-            href="#contato"
-            sx={{
-              position: "relative",
-              zIndex: 3,
-              fontFamily: "'Poppins', sans-serif",
-              fontSize: { xs: "1rem", md: "1.25rem" },
-              px: { xs: 4, md: 6 },
-              py: { xs: 1.4, md: 2.2 },
-              borderRadius: "56px",
-              fontWeight: 700,
-              textTransform: "none",
-              color: "#ffffff",
-              backgroundColor: "#5170ff",
-              boxShadow: "0 4px 16px rgba(81,112,255,0.25)",
-              transition:
-                "transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease",
-              "&:hover": {
-                backgroundColor: "#5170ff",
-                transform: "translateY(-3px)",
-                boxShadow: "0 8px 22px rgba(81,112,255,0.35)",
-                filter: "brightness(1.05)",
+        <Box sx={{ maxWidth: 400 }}>
+          <Motion.div initial="hidden" animate="visible" variants={fadeInUp}>
+            <Typography
+              sx={{
                 color: "#ffffff",
-              },
-            }}
-          >
-            Entre em Contato
-          </Button>
-        </motion.div>
-      </Stack>
+                fontSize: { xs: "1rem", md: "1.1rem" },
+                lineHeight: 1.5,
+                fontFamily: "'Poppins', sans-serif",
+                textAlign: { xs: "center", md: "left" },
+              }}
+            >
+              Engenheiro de Software e Estagiário de QA na Acqio
+              — explorando o ecossistema de pagamentos digitais e 
+              impulsionando a qualidade de produtos reais.
+            </Typography>
+          </Motion.div>
+        </Box>
+
+        <Box sx={{ maxWidth: 400 }}>
+          <Motion.div initial="hidden" animate="visible" variants={fadeInUp}>
+            <Typography
+              sx={{
+                color: "#ffffff",
+                fontSize: { xs: "1rem", md: "1.1rem" },
+                lineHeight: 1.5,
+                fontFamily: "'Poppins', sans-serif",
+                textAlign: { xs: "center", md: "right" },
+              }}
+            >
+              Desenvolvendo soluções digitais que unem engenharia,
+              produto e experiência — transformando ideias em sistemas
+              robustos, escaláveis e cheios de propósito.
+            </Typography>
+          </Motion.div>
+        </Box>
+      </Box>
     </Box>
   );
 };
