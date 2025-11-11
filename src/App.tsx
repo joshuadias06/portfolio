@@ -5,6 +5,7 @@ import { getTheme } from "./theme";
 import { Home } from "./sections/Home";
 import { Carrer } from "./sections/Carrer";
 import { Certifications } from "./sections/Certifications";
+import {Projects} from "./sections/Projects"
 
 function AppContent() {
   const { mode } = useThemeMode();
@@ -29,6 +30,7 @@ function AppContent() {
         <Home />
         <Carrer />
         <Certifications />
+        <Projects />
       </Box>
     </ThemeProvider>
   );

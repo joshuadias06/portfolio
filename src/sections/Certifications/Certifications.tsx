@@ -11,14 +11,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { certificationsData } from "./certificationsData";
 import type { Certification } from "./certificationsData";
 
-// 🔹 Ícones das tecnologias
 import {
   SiKotlin,
   SiPython,
   SiCypress,
   SiReact,
   SiGooglecloud,
-  SiGithub
+  SiGithub,
 } from "react-icons/si";
 import { FaHandshake, FaJava } from "react-icons/fa";
 
@@ -27,7 +26,6 @@ import type { JSX } from "@emotion/react/jsx-runtime";
 const MotionCard = motion(Card);
 const MotionDiv = motion.div;
 
-// 🔹 Categorias
 const categories = [
   "java",
   "kotlin",
@@ -39,7 +37,6 @@ const categories = [
   "softskills",
 ];
 
-// 🔹 Mapeamento de ícones
 const categoryIcons: Record<string, JSX.Element> = {
   java: <FaJava color="white" size={20} />,
   kotlin: <SiKotlin color="white" size={20} />,
@@ -157,8 +154,8 @@ export const Certifications = () => {
             alignItems="stretch"
             useFlexGap
             sx={{
-              rowGap: 6, // espaçamento vertical
-              columnGap: 4, // espaçamento horizontal
+              rowGap: 6,
+              columnGap: 4,
             }}
           >
             {filteredCerts.map((cert: Certification, index) => (
@@ -181,7 +178,7 @@ export const Certifications = () => {
                 }}
               >
                 <MotionCard
-                  whileHover={{ scale: 1.03 }}
+                  whileHover={{ scale: 1.03 }} // ✅ mantém apenas o efeito de leve zoom
                   sx={{
                     width: "100%",
                     height: "100%",
@@ -198,23 +195,6 @@ export const Certifications = () => {
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-between",
-                    "&:hover::after": {
-                      opacity: 1,
-                      transform: "translateX(150%)",
-                    },
-                    "&::after": {
-                      content: '""',
-                      position: "absolute",
-                      top: 0,
-                      left: "-75%",
-                      width: "50%",
-                      height: "100%",
-                      background:
-                        "linear-gradient(120deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.05) 100%)",
-                      opacity: 0,
-                      transform: "translateX(0)",
-                      transition: "transform 0.6s ease, opacity 0.4s ease",
-                    },
                   }}
                 >
                   <CardContent sx={{ p: 3, zIndex: 2, flexGrow: 1 }}>

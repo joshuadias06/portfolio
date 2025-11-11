@@ -109,10 +109,10 @@ export const Home = () => {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.9, ease: "easeOut" }}
           style={{
-            width: "min(75vw, 600px)", // ⬆️ agora ocupa mais espaço da tela
-            height: "min(75vw, 600px)",
-            maxWidth: 600,
-            maxHeight: 600,
+            width: "min(75vw, 800px)",
+            height: "min(75vw, 800px)",
+            maxWidth: 800,
+            maxHeight: 800,
             objectFit: "cover",
             borderRadius: "50%",
             WebkitMaskImage: "radial-gradient(circle, white 99%, transparent 100%)",
