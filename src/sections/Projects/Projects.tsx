@@ -1,4 +1,4 @@
-import { Box, Typography, Button, Stack } from "@mui/material";
+import { Box, Typography, IconButton, Stack, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
 import { projects } from "./projectsData";
@@ -6,19 +6,21 @@ import { projects } from "./projectsData";
 const MotionBox = motion(Box);
 
 export const Projects = () => {
+  const theme = useTheme();
+  const isDark = theme.palette.mode === "dark";
+
   return (
     <Box
       id="projetos"
       sx={{
         width: "100vw",
-        minHeight: "100vh",
         backgroundColor: "background.default",
-        px: { xs: "5vw", md: 0 },
-        py: { xs: 10, md: 14 },
+        px: { xs: "4vw", md: "2vw" },
+        py: { xs: 5, md: 8 },
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        gap: { xs: 10, md: 14 },
+        gap: { xs: 3, md: 4 },
       }}
     >
       <Typography
@@ -27,7 +29,7 @@ export const Projects = () => {
         color="primary"
         sx={{
           textAlign: "center",
-          mb: 2,
+          mb: { xs: 2, md: 3 },
           fontFamily: "'Poppins', sans-serif",
         }}
       >
@@ -38,111 +40,126 @@ export const Projects = () => {
         const isEven = index % 2 === 0;
 
         return (
-          <MotionBox
+          <Box
             key={project.id}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
             sx={{
-              display: "flex",
-              flexDirection: {
-                xs: "column",
-                md: isEven ? "row" : "row-reverse",
-              },
-              alignItems: "center",
-              justifyContent: "center",
               width: "100%",
-              gap: { xs: 4, md: 6 },
+              maxWidth: "92vw",
+              mx: "auto",
             }}
           >
-            {/* 🔹 Imagem menor, encostada, com sombra suave no PNG */}
-            <Box
+            <MotionBox
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
               sx={{
-                width: { xs: "85%", md: "36%" },
                 display: "flex",
-                justifyContent: isEven ? "flex-start" : "flex-end",
+                flexDirection: { xs: "column", md: isEven ? "row" : "row-reverse" },
+                alignItems: "flex-start",
+                justifyContent: "flex-start",
+                width: "100%",
+                gap: 0,
               }}
             >
+              {/* 🔹 Imagem */}
               <Box
-                component="img"
-                src={project.image}
-                alt={project.title}
                 sx={{
-                  width: "100%",
-                  maxWidth: 340,
-                  borderRadius: "14px",
-                  objectFit: "contain",
-                  filter: "drop-shadow(0 8px 22px rgba(81,112,255,0.3))",
-                  transition: "transform 0.3s ease, filter 0.3s ease",
-                  "&:hover": {
-                    transform: "scale(1.03)",
-                    filter: "drop-shadow(0 10px 26px rgba(81,112,255,0.45))",
-                  },
-                }}
-              />
-            </Box>
-
-            {/* 🔹 Texto ao lado da imagem */}
-            <Stack
-              spacing={2}
-              sx={{
-                width: { xs: "100%", md: "44%" },
-                textAlign: { xs: "center", md: isEven ? "left" : "right" },
-              }}
-            >
-              <Typography
-                variant="h5"
-                fontWeight={700}
-                sx={{
-                  fontFamily: "'Poppins', sans-serif",
-                  color: "white",
+                  flexShrink: 0,
+                  width: { xs: "100%", md: "auto" },
+                  display: "flex",
+                  justifyContent: isEven ? "flex-start" : "flex-end",
                 }}
               >
-                {project.title}
-              </Typography>
+                <Box
+                  component="img"
+                  src={project.image}
+                  alt={project.title}
+                  sx={{
+                    width: { xs: "85%", md: 260 },
+                    borderRadius: "10px",
+                    objectFit: "cover",
+                    filter: "drop-shadow(0 6px 16px rgba(81,112,255,0.25))",
+                    transition: "transform 0.2s ease, filter 0.2s ease",
+                    "&:hover": {
+                      transform: "scale(1.03)",
+                      filter: "drop-shadow(0 8px 22px rgba(81,112,255,0.35))",
+                    },
+                  }}
+                />
+              </Box>
 
-              <Typography
-                variant="body1"
+              {/* 🔹 Texto + botão do GitHub */}
+              <Stack
+                spacing={{ xs: 1.5, md: 2 }} // ⬆️ aumentado o espaçamento vertical interno
                 sx={{
-                  color: "text.secondary",
-                  fontFamily: "'Inter', sans-serif",
-                  lineHeight: 1.6,
-                  mb: 1,
-                  maxWidth: 420,
+                  flexGrow: 1,
+                  pl: { xs: 0, md: isEven ? 2 : 0 },
+                  pr: { xs: 0, md: isEven ? 0 : 2 },
+                  alignItems: { xs: "center", md: isEven ? "flex-start" : "flex-end" },
+                  textAlign: { xs: "center", md: "justify" },
+                  justifyContent: "flex-start",
+                  maxWidth: { xs: "90%", md: 420 },
                   mx: { xs: "auto", md: 0 },
                 }}
               >
-                {project.description}
-              </Typography>
+                <Typography
+                  variant="h6"
+                  fontWeight={700}
+                  sx={{
+                    fontFamily: "'Poppins', sans-serif",
+                    color: "white",
+                    fontSize: { xs: "1rem", md: "1.1rem" },
+                    textAlign: { xs: "center", md: isEven ? "left" : "right" },
+                  }}
+                >
+                  {project.title}
+                </Typography>
 
-              <Button
-                variant="contained"
-                href={project.github}
-                target="_blank"
-                sx={{
-                  alignSelf: { xs: "center", md: isEven ? "flex-start" : "flex-end" },
-                  borderRadius: "28px",
-                  px: 3,
-                  py: 1,
-                  textTransform: "none",
-                  fontWeight: 600,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 1,
-                  backgroundColor: "#5170ff",
-                  boxShadow: "0 4px 18px rgba(81,112,255,0.25)",
-                  "&:hover": {
-                    backgroundColor: "#6783ff",
-                    boxShadow: "0 6px 28px rgba(81,112,255,0.35)",
-                  },
-                }}
-              >
-                <FaGithub size={18} />
-                Ver no GitHub
-              </Button>
-            </Stack>
-          </MotionBox>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "text.secondary",
+                    fontFamily: "'Inter', sans-serif",
+                    lineHeight: 1.6,
+                    textAlign: "justify",
+                  }}
+                >
+                  {project.description}
+                </Typography>
+
+                {/* 🔹 Ícone do GitHub como botão */}
+                <IconButton
+                  component="a"
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{
+                    color: isDark ? "rgba(255,255,255,0.85)" : "rgba(0,0,0,0.85)",
+                    transition: "transform 0.25s ease, color 0.25s ease, filter 0.25s ease",
+                    "&:hover": {
+                      transform: "scale(1.25)",
+                      color: "#5170ff",
+                      filter: "drop-shadow(0 0 6px rgba(81,112,255,0.5))",
+                    },
+                  }}
+                >
+                  <FaGithub size={26} />
+                </IconButton>
+              </Stack>
+            </MotionBox>
+
+            {/* 🔹 Divider */}
+            <Box
+              sx={{
+                width: "88%",
+                height: "1.5px",
+                backgroundColor: "rgba(255,255,255,0.25)",
+                mt: { xs: 2, md: 2.3 },
+                mx: "auto",
+              }}
+            />
+          </Box>
         );
       })}
     </Box>
