@@ -16,26 +16,27 @@ export const Projects = () => {
         width: "100vw",
         backgroundColor: "background.default",
         px: { xs: "4vw", md: "2vw" },
-        py: { xs: 5, md: 8 },
+        py: { xs: 3, md: 5 },
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        gap: { xs: 3, md: 4 },
       }}
     >
+      {/* 🔹 Título da seção */}
       <Typography
         variant="h3"
         fontWeight={800}
         color="primary"
         sx={{
           textAlign: "center",
-          mb: { xs: 2, md: 3 },
+          mb: { xs: 2, md: 8.0 }, // ⬆️ espaçamento mais confortável
           fontFamily: "'Poppins', sans-serif",
         }}
       >
         Projetos
       </Typography>
 
+      {/* 🔹 Lista de projetos */}
       {projects.map((project, index) => {
         const isEven = index % 2 === 0;
 
@@ -46,29 +47,31 @@ export const Projects = () => {
               width: "100%",
               maxWidth: "92vw",
               mx: "auto",
+              mb: { xs: 1.2, md: 1.5 },
             }}
           >
             <MotionBox
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
+              transition={{ duration: 0.38, ease: "easeOut" }}
               sx={{
                 display: "flex",
                 flexDirection: { xs: "column", md: isEven ? "row" : "row-reverse" },
-                alignItems: "flex-start",
+                alignItems: "center",
                 justifyContent: "flex-start",
+                gap: { xs: 1.4, md: 2 },
                 width: "100%",
-                gap: 0,
               }}
             >
-              {/* 🔹 Imagem */}
+              {/* 🔹 Imagem do projeto */}
               <Box
                 sx={{
-                  flexShrink: 0,
-                  width: { xs: "100%", md: "auto" },
+                  flex: "0 0 auto",
+                  width: { xs: "100%", md: 240 },
                   display: "flex",
                   justifyContent: isEven ? "flex-start" : "flex-end",
+                  alignItems: "center",
                 }}
               >
                 <Box
@@ -76,31 +79,25 @@ export const Projects = () => {
                   src={project.image}
                   alt={project.title}
                   sx={{
-                    width: { xs: "85%", md: 260 },
+                    width: { xs: "85%", md: "100%" },
                     borderRadius: "10px",
                     objectFit: "cover",
-                    filter: "drop-shadow(0 6px 16px rgba(81,112,255,0.25))",
-                    transition: "transform 0.2s ease, filter 0.2s ease",
-                    "&:hover": {
-                      transform: "scale(1.03)",
-                      filter: "drop-shadow(0 8px 22px rgba(81,112,255,0.35))",
-                    },
+                    boxShadow: "0 8px 28px rgba(0,0,0,0.45)",
+                    transition: "transform 0.18s ease",
+                    "&:hover": { transform: "scale(1.03)" },
                   }}
                 />
               </Box>
 
-              {/* 🔹 Texto + botão do GitHub */}
+              {/* 🔹 Bloco de texto + botão GitHub */}
               <Stack
-                spacing={{ xs: 1.5, md: 2 }} // ⬆️ aumentado o espaçamento vertical interno
+                spacing={{ xs: 1.2, md: 1.4 }}
                 sx={{
-                  flexGrow: 1,
-                  pl: { xs: 0, md: isEven ? 2 : 0 },
-                  pr: { xs: 0, md: isEven ? 0 : 2 },
+                  flex: { xs: "1 1 auto", md: "0 0 420px" },
+                  maxWidth: { xs: "100%", md: 420 },
                   alignItems: { xs: "center", md: isEven ? "flex-start" : "flex-end" },
-                  textAlign: { xs: "center", md: "justify" },
-                  justifyContent: "flex-start",
-                  maxWidth: { xs: "90%", md: 420 },
-                  mx: { xs: "auto", md: 0 },
+                  textAlign: { xs: "center", md: isEven ? "left" : "right" },
+                  justifyContent: "center",
                 }}
               >
                 <Typography
@@ -110,7 +107,6 @@ export const Projects = () => {
                     fontFamily: "'Poppins', sans-serif",
                     color: "white",
                     fontSize: { xs: "1rem", md: "1.1rem" },
-                    textAlign: { xs: "center", md: isEven ? "left" : "right" },
                   }}
                 >
                   {project.title}
@@ -121,42 +117,41 @@ export const Projects = () => {
                   sx={{
                     color: "text.secondary",
                     fontFamily: "'Inter', sans-serif",
-                    lineHeight: 1.6,
+                    lineHeight: 1.55,
                     textAlign: "justify",
                   }}
                 >
                   {project.description}
                 </Typography>
 
-                {/* 🔹 Ícone do GitHub como botão */}
                 <IconButton
                   component="a"
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   sx={{
-                    color: isDark ? "rgba(255,255,255,0.85)" : "rgba(0,0,0,0.85)",
-                    transition: "transform 0.25s ease, color 0.25s ease, filter 0.25s ease",
+                    color: isDark ? "rgba(255,255,255,0.92)" : "rgba(0,0,0,0.92)",
+                    transition: "transform 0.22s ease, color 0.22s ease",
                     "&:hover": {
-                      transform: "scale(1.25)",
+                      transform: "scale(1.15)",
                       color: "#5170ff",
-                      filter: "drop-shadow(0 0 6px rgba(81,112,255,0.5))",
                     },
                   }}
                 >
-                  <FaGithub size={26} />
+                  <FaGithub size={24} />
                 </IconButton>
               </Stack>
             </MotionBox>
 
-            {/* 🔹 Divider */}
+            {/* 🔹 Divider compacto */}
             <Box
               sx={{
-                width: "88%",
+                width: { xs: "92%", md: "85%" },
                 height: "1.5px",
-                backgroundColor: "rgba(255,255,255,0.25)",
-                mt: { xs: 2, md: 2.3 },
+                backgroundColor: "rgba(255,255,255,0.22)",
+                mt: { xs: 1, md: 1.2 },
                 mx: "auto",
+                borderRadius: "1px",
               }}
             />
           </Box>

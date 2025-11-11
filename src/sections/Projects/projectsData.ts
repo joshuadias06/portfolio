@@ -17,5 +17,7 @@ export const projects = [
       "F1 Picks é uma aplicação voltada para fãs de Fórmula 1, onde os usuários podem fazer palpites e acompanhar resultados em tempo real, competindo com amigos e acompanhando o desempenho de seus pilotos favoritos ao longo da temporada.",
     image: f1picksMobile,
     github: "https://github.com/joshuadias06/f1_picks",
+    decorative:
+      "https://raw.githubusercontent.com/joshuadias06/portfolio/main/src/assets/decor/f1car_png.png",
   },
 ];
