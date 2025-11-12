@@ -80,7 +80,7 @@ export const certificationsData: Certification[] = [
     },
     {
         id: 6,
-        title: "Crinado Deep Links e testando o Navigation",
+        title: "Criando Deep Links e testando o Navigation",
         institution: "Alura",
         description: "Implementação de Deep Links e testes de navegação em apps Android.",
         image: kotlin2,

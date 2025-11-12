@@ -1,23 +1,43 @@
 import qatoolboxDesktop from "../../assets/projects/qatoolbox_desktop.png";
 import f1picksMobile from "../../assets/projects/f1picks_mobile.png";
+import authApi from "../../assets/projects/auth.png";
+import condoMobile from "../../assets/projects/condoconnect_mobile.png";
 
 export const projects = [
   {
     id: 1,
     title: "QA Tool Box - Desktop",
     description:
-      "QA Tool Box é uma aplicação desenvolvida para auxiliar analistas de QA na interação com terminais POS, oferecendo ferramentas práticas para testes e validações nos modelos N910 (Newland) e GPOS 760 (Gertec), otimizando o processo de análise e garantindo maior eficiência nos testes.",
+      "Ferramenta desenvolvida para auxiliar analistas de QA na interação com terminais POS, oferecendo funcionalidades práticas de teste e automação nos modelos N910 (Newland) e GPOS 760 (Gertec). Otimiza o fluxo de validação e garante maior eficiência nas análises.",
     image: qatoolboxDesktop,
     github: "https://github.com/devjoshuadp14",
+    technologies: ["Kotlin", "Compose Multiplatform", "POS SDK"],
   },
   {
     id: 2,
     title: "F1 Picks - Mobile",
     description:
-      "F1 Picks é uma aplicação voltada para fãs de Fórmula 1, onde os usuários podem fazer palpites e acompanhar resultados em tempo real, competindo com amigos e acompanhando o desempenho de seus pilotos favoritos ao longo da temporada.",
+      "Aplicativo voltado para fãs de Fórmula 1, onde os usuários fazem palpites e acompanham resultados em tempo real, competindo com amigos e monitorando o desempenho de pilotos durante a temporada.",
     image: f1picksMobile,
     github: "https://github.com/joshuadias06/f1_picks",
-    decorative:
-      "https://raw.githubusercontent.com/joshuadias06/portfolio/main/src/assets/decor/f1car_png.png",
+    technologies: ["Kotlin", "Jetpack Compose", "Firebase", "API F1"],
+  },
+  {
+    id: 3,
+    title: "Auth API - Backend",
+    description:
+      "API construída em Java com Spring Boot, utilizando Spring Security e JWT para autenticação e autorização seguras. Inclui endpoints de cadastro e login, validação de tokens e controle de acesso baseado em perfis de usuário.",
+    image: authApi,
+    github: "https://github.com/joshuadias06/auth-API/tree/main",
+    technologies: ["Java", "Spring Boot", "JWT", "H2 Database"],
+  },
+  {
+    id: 4,
+    title: "Condo Connect - Mobile",
+    description:
+      "Plataforma mobile para gestão inteligente de condomínios. Permite agendar áreas comuns, cadastrar moradores e produtos, além de acompanhar o uso dos espaços com dashboards interativos e dados em tempo real.",
+    image: condoMobile,
+    github: "https://github.com/joshuadias06/condo-connect",
+    technologies: ["React Native", "Node.js", "PostgreSQL", "Chart.js"],
   },
 ];
